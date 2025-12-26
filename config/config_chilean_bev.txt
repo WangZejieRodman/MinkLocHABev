@@ -1,0 +1,37 @@
+[DEFAULT]
+dataset_folder=/home/wzj/pan2/Chilean_Underground_Mine_Dataset_Many_Times/
+
+[TRAIN]
+# 显存允许的话，Batch Size 越大越好
+batch_size=128
+batch_split_size=16
+
+# --- 核心修改区域 Start ---
+epochs=100
+save_freq=10
+
+# 初始学习率保持 1e-3
+lr=1e-3
+
+# 学习率调度器：在第 30, 60, 80 轮时将学习率乘以 0.1
+scheduler=MultiStepLR
+scheduler_milestones=30,60,80
+# --- 核心修改区域 End ---
+
+weight_decay=1e-4
+
+loss=TruncatedSmoothAP
+positives_per_query=2
+tau1=0.01
+
+similarity=euclidean
+
+# 开启旋转增强 (0-360度随机旋转)
+aug_mode=1
+set_aug_mode=1
+
+train_file=/home/wzj/pan1/MinkLocHABev/datasets/chilean/training_queries_chilean.pickle
+val_file=/home/wzj/pan1/MinkLocHABev/datasets/chilean/test_queries_chilean.pickle
+
+num_workers=4
+
