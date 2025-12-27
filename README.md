@@ -26,17 +26,39 @@ MinkLocHABev 是一个专门针对地下矿井环境的激光雷达点云场景�
 
 **数据组织结构：**
 ```
-Chilean_Underground_Mine_Dataset_Many_Times/
-└── chilean_NoRot_NoScale/
-    ├── 100/  (Session 100)
-    │   ├── pointcloud_20m_10overlap/
-    │   │   ├── 0.bin
-    │   │   ├── 1.bin
-    │   │   └── ...
-    │   └── pointcloud_locations_20m_10overlap.csv
-    ├── 101/  (Session 101)
-    ├── ...
-    └── 209/  (Session 209)
+/home/wzj/pan2/Chilean_Underground_Mine_Dataset_Many_Times/chilean_NoRot_NoScale/
+
+├── 100/
+
+│   ├── pointcloud_20m_10overlap/
+
+│   │   ├── 100003.bin 
+
+│   │   ├── 100004.bin
+
+│   │   └── ...
+
+│   └── pointcloud_locations_20m_10overlap.csv
+
+├── 101/
+
+│   ├── pointcloud_20m_10overlap/
+
+│   └── pointcloud_locations_20m_10overlap.csv
+
+...
+
+├── 208/
+
+│   ├── pointcloud_20m_10overlap/
+
+│   └── pointcloud_locations_20m_10overlap.csv
+
+└── 209/
+
+    ├── pointcloud_20m_10overlap/
+
+    └── pointcloud_locations_20m_10overlap.csv
 ```
 
 **数据划分策略（基于时间/Session）：**
