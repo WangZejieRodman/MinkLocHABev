@@ -5,7 +5,7 @@ import MinkowskiEngine as ME
 # ==========================================
 # 导入新模块
 # ==========================================
-from models.layers.bev_enhancers import VerticalContextModule, GlobalLayerAttention, SparseLocalAttention
+from models.layers.bev_enhancers import VerticalContextModule, GlobalLayerAttention
 
 
 class MinkBottleneck(nn.Module):
