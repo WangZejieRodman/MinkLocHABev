@@ -155,25 +155,6 @@ class VerticalContextModule(nn.Module):
 
 ---
 
-#### **创新点3: 稀疏局部注意力 (Sparse Local Attention)**
-
-```python
-class SparseLocalAttention(nn.Module):
-    """
-    通过"Gated Local Context"机制模拟局部注意力
-    如果局部几何特征与中心点特征匹配则激活，否则抑制
-    """
-```
-
-**机制：**
-- Query: 1×1卷积提取中心点特征
-- Key/Context: 3×3卷积提取邻域特征
-- Attention: Query ⊙ Key (哈达玛积)
-- Value: 加权后的特征 + 残差连接
-
-**优势**: 比全局Self-Attention更高效，利用稀疏性
-
----
 
 #### **网络整体架构**
 
@@ -189,10 +170,7 @@ class SparseLocalAttention(nn.Module):
   ├─ Block2: 64→128, /4
   └─ Block3: 128→256, /8
   ↓
-[Stage 3] 高级语义
-  └─ Sparse Local Attention    (自适应几何建模)
-  ↓
-[Stage 4] 输出对齐
+[Stage 3] 输出对齐
   └─ Conv: 256→256
   ↓
 输出: (Batch, 256, H/8, W/8)
@@ -420,7 +398,7 @@ MinkLocHABev/
 │   ├── minkloc.py                      # 主模型封装
 │   ├── minkloc_bev.txt                 # 模型配置
 │   ├── layers/
-│   │   ├── bev_enhancers.py           # 三大创新模块
+│   │   ├── bev_enhancers.py           # 2大创新模块
 │   │   ├── pooling.py                 # GeM等池化
 │   │   └── ...
 │   └── losses/
@@ -522,7 +500,6 @@ MinkLocHABev的核心贡献：
 2. **模块创新**: 
    - 垂直上下文模块恢复Z轴相关性
    - 全局层注意力抑制噪声层
-   - 稀疏局部注意力自适应建模几何
 3. **任务适配**: 针对矿井场景的数据增强和评估协议
 4. **工程优化**: 多阶段反向传播支持大batch训练
 
