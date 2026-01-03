@@ -105,13 +105,6 @@ class MinkBEVBackbone(nn.Module):
             MinkBottleneck(c3, c3, kernel_size=5, dimension=dimension)
         )
 
-        # ==========================================
-        # 3. 稀疏自注意力 (插入在深层)
-        # 在 Block3 之后，特征图大小适中，适合做复杂的 Attention
-        # 输入通道是 c3 (256)
-        # ==========================================
-        # self.sparse_attention = SparseLocalAttention(in_channels=c3, dimension=dimension)
-
         # Block 4 (Final Features): 256 -> out_channels
         self.block4 = ME.MinkowskiConvolution(c3, c4, kernel_size=3, dimension=dimension, bias=True)
 
@@ -135,13 +128,7 @@ class MinkBEVBackbone(nn.Module):
         x = self.block3(x)  # -> 256 channels, /8
 
         # ==========================================
-        # 阶段 3: 稀疏自注意力 (Innovation 3)
-        # ==========================================
-        # 在高语义层自适应建模巷道壁几何
-        # x = self.sparse_attention(x)
-
-        # ==========================================
-        # 阶段 4: 输出对齐
+        # 阶段 3: 输出对齐
         # ==========================================
         x = self.block4(x)
 
