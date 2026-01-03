@@ -7,5 +7,5 @@ normalize_embeddings=False
 
 coordinates=bev
 coords_range=-10., -10, -4, 10, 10, 8
-div_n=256, 256, 32
+div_n=2048, 2048, 32
 in_channels=32
